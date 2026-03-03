@@ -32,11 +32,11 @@ public class Driver {
                     driver = new SafariDriver();
                     break;
                 case "edge":
-                    WebDriverManager.safaridriver().setup();
+                    WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
                     break;
                 default:
-                    WebDriverManager.safaridriver().setup();
+                    WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     break;
             }

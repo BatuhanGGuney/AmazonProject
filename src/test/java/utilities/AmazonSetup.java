@@ -1,7 +1,8 @@
 package utilities;
 
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AmazonPage;
 
 import java.time.Duration;
@@ -13,15 +14,15 @@ public class AmazonSetup {
     public static void amazonSetup(){
 
         //Amazon sitesine giriş yap.
-        Driver.getDriver().get(ConfigReader.getProperty("urlAmazon"));
-        Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        WebDriver driver = Driver.getDriver();
+        driver.get(ConfigReader.getProperty("urlAmazon"));
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         try {
-            if (amazonPage.cookies != null){
-                amazonPage.acceptCookies.click();
-            }
-        } catch (NoSuchElementException e) {
-            // çerez yoksa umrunda değil
+            wait.until(ExpectedConditions.elementToBeClickable(amazonPage.acceptCookies)).click();
+        } catch (org.openqa.selenium.TimeoutException e) {
+            System.out.println("Cookies popup bulunamadı, devam ediliyor...");
         }
 
     }

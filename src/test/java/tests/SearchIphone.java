@@ -12,16 +12,15 @@ import java.time.Duration;
 import static utilities.AmazonSetup.amazonSetup;
 
 public class SearchIphone {
+
     static AmazonPage amazonPage = new AmazonPage();
     static WebDriver driver = Driver.getDriver();
 
     public static void searchIphone() throws InterruptedException {
 
-        amazonSetup();
-
         //Arama kutusuna İphone yaz ve arat.
         WebElement searchBox = amazonPage.searchBox;
-        searchBox.sendKeys(ConfigReader.getProperty("seachText"), Keys.ENTER);
+        searchBox.sendKeys(ConfigReader.getProperty("searchText"), Keys.ENTER);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         Thread.sleep(1000);
 

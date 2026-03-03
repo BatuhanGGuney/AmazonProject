@@ -1,6 +1,5 @@
 package tests;
 
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,7 +11,6 @@ public class AmazonTest {
     @BeforeMethod
     public void searchIphone() throws InterruptedException {
         AmazonSetup.amazonSetup();
-
         SearchIphone.searchIphone();
     }
 

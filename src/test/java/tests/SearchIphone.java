@@ -9,7 +9,6 @@ import utilities.Driver;
 
 import java.time.Duration;
 
-import static utilities.AmazonSetup.amazonSetup;
 
 public class SearchIphone {
 

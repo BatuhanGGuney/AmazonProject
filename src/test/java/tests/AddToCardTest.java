@@ -5,7 +5,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AmazonPage;
 import utilities.Driver;
 
@@ -18,7 +17,6 @@ public class AddToCardTest {
 
     static AmazonPage amazonPage = new AmazonPage();
     static WebDriver driver = Driver.getDriver();
-    static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
 
     public static void addToCart() throws InterruptedException {
@@ -30,7 +28,7 @@ public class AddToCardTest {
 
         //Fiyatı en yüksek olan ürünü sepete ekle
         amazonPage.addToCart.click();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
         //Fiyatı düşükten yükseğe sırala
         amazonPage.arrangement.click();
@@ -39,11 +37,11 @@ public class AddToCardTest {
                 .sendKeys(Keys.ENTER)
                 .perform();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
         //En düşük fiyatlı ürünü sepete ekle
         amazonPage.addToCart.click();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
         //Sepete git
         amazonPage.goToCart.click();

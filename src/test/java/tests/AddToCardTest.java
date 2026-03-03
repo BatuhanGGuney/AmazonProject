@@ -48,21 +48,31 @@ public class AddToCardTest {
 
         List<WebElement> productsPrice = driver.findElements(By.xpath("//span[@class=\"a-price a-text-price sc-product-price sc-white-space-nowrap a-size-medium\"]"));
         double price = 0;
+        int count = 0;
         for ( WebElement productprice : productsPrice ){
+            count++;
             String priceText = productprice.getText()
                     .replaceAll("[^0-9,]", "")  // Sayı ve virgülü tut
                     .replace(",", ".");  // Virgülü noktaya çevir
             double priceD = Double.parseDouble(priceText);
 
-            System.out.println(priceD);
+            System.out.println(count + ". ürünün fiyatı : " + priceD + "TL");
             price = priceD + price;
         }
-        System.out.println(price);
+        System.out.println( "Ürünlerin fiyatlarının toplamı :" + price + "TL");
 
         double totalPrice = Double.parseDouble(amazonPage.totalPrice.getText()
                 .replaceAll("[^0-9,]", "")  // Sayı ve virgülü tut
                 .replace(",", "."));  // Virgülü noktaya çevir
 
-        assertEquals(price, totalPrice);
+        System.out.println("Sepetteki toplam fiyat : " + totalPrice + "TL");
+
+        if(Math.abs(price - totalPrice) < 0.01){
+            System.out.println("Toplam fiyat doğru hesaplanmış 👍");
+        }
+        assertEquals(price, totalPrice, "Toplam fiyat ürünlerin fiyatlarının toplamına eşit değil!");
+
+
+
     }
 }

@@ -1,10 +1,7 @@
 package utilities;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AmazonPage;
-
 import java.time.Duration;
 
 public class AmazonSetup {
@@ -16,14 +13,15 @@ public class AmazonSetup {
         //Amazon sitesine giriş yap.
         WebDriver driver = Driver.getDriver();
         driver.get(ConfigReader.getProperty("urlAmazon"));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
 
+    public static void  acceptCookies(){
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(amazonPage.acceptCookies)).click();
+            amazonPage.acceptCookies.click();
         } catch (org.openqa.selenium.TimeoutException e) {
             System.out.println("Cookies popup bulunamadı, devam ediliyor...");
         }
-
     }
 }

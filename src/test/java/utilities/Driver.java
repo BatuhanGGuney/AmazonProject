@@ -46,10 +46,12 @@ public class Driver {
         return driver;
     }
 
-    public static void closeDriver(){
-        if (driver != null){
-            driver.close();
+    public static void quitDriver() {
+
+        if (driver != null) {
+            driver.quit();//WebDriver'ı kapatır ve tüm pencereleri sıfırlar.
             driver = null;
         }
     }
+
 }
